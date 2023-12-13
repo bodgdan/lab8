@@ -24,7 +24,7 @@ CN = www.mywebsite.com
 EOF
 
 
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt -config ssl-config.conf
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt -config ssl-config.conf
 
 
 cat <<EOF > apache-config.conf
@@ -38,10 +38,10 @@ cat <<EOF > apache-config.conf
 EOF
 
 
-sudo cp apache-config.conf /etc/apache2/sites-available/000-default.conf
-sudo a2enmod ssl
-sudo a2ensite default-ssl
-sudo systemctl restart apache2
+cp apache-config.conf /etc/apache2/sites-available/000-default.conf
+a2enmod ssl
+a2ensite default-ssl
+systemctl restart apache2
 
 
 echo "<html><body><h1>Hello world! Hovda Bohdan done it</h1></body></html>" | sudo tee /var/www/html/index.html
